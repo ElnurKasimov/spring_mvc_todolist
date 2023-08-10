@@ -1,0 +1,46 @@
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 20px;
+}
+button{
+    width: 30%;
+    border-radius: 10px;
+    height: 30px;
+}
+input{
+    font-size: 20px;
+}
+select{
+    width: 200px;
+    height: 30px;
+}
+.action{
+    background-color: cornflowerblue;
+    color: white;
+}
+.action:hover{
+    transition: all 0.3s ease;
+    background-color: royalblue;
+    cursor: pointer;
+}
+.clear{
+    background-color: lightgrey;
+}
+.clear:hover{
+    transition: all 0.3s ease;
+    background-color: darkgrey;
+    cursor: pointer;
+}
+.row{
+    margin: 10px;
+}
+.row label{
+    font-size: 20px;
+    margin-right: 20px;
+}
+.error-message{
+    color: red;
+}

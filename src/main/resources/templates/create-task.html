@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Task</title>
+    <link th:href="@{/form.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+    <h1>Create New Task</h1>
+    <form th:action="@{/tasks/create/todos/{todoId}(todoId=${todo_id})}" th:object="${task}" method="post">
+        <div class="row">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div class="row">
+            <label for="priority">Priority:</label>
+            <select id="priority" th:field="*{priority}">
+                <option th:each="priority : ${T(com.softserve.itacademy.model.Priority).values()}"
+                    th:value="${priority}"
+                    th:text="${priority}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button class="action" type="submit">Create</button>
+            <button class="clear" type="reset">Clear</button>
+        </div>
+    </form>
+    <a href="/todos/${todo_id}/tasks">Go to Task List</a>
 </body>
 </html>

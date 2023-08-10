@@ -1,6 +1,7 @@
 package com.softserve.itacademy.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,11 +22,10 @@ public class ToDoController {
 //        return " ";
 //    }
 //
-//    @GetMapping("/{id}/tasks")
-//    public String read(//add needed parameters) {
-//        //ToDo
-//        return " ";
-//    }
+    @GetMapping("/{id}/tasks")
+    public String read() {
+        return "todo-tasks";
+    }
 //
 //    @GetMapping("/{todo_id}/update/users/{owner_id}")
 //    public String update(//add needed parameters) {
