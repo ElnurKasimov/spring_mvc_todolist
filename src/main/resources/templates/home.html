@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
-
-    <div th:replace="layouts/home-content">
-        O-Go-Go
-    </div>
+    <header>TODOs list</header>
+          <h1><br>List of Users<br></h1>
+           <div>
+               <form action="/users/create" style=" justify-content: center;">
+                   <button type="submit" class="colorful-button">Create new user</button>
+               </form><br>
+           </div>
+    <footer>Sprint 13,  Spring MVC, Team 2_06</footer>
 
 </body>
 </html>

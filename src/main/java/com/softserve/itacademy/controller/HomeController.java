@@ -9,8 +9,8 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homePage(Model model) {
-        // Добавление данных в модель, если необходимо
-        return "home"; // Возвращает имя шаблона (без расширения .html)
+
+        return "home";
     }
 
 
