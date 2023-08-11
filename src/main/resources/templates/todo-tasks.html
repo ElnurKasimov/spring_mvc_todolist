@@ -2,8 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Tasks of ToDo List</title>
+    <title>All tasks from certain todo</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div th:replace="header :: header"></div>
+    <h1>All tasks from <span th:text="${todo.getTitle()}"></span></h1> <!-- add name -->
+    <button class="shadowed-button">Create Task</button>
+    <h2>Tasks</h2>
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>State</th>
+            <th>Operations</th>
+        </tr>
+        <tr th:each="task, i : ${taskList}">
+            <td th:text="${i.index + 1}"></td>
+            <td th:text="${task.getId()}"></td>
+            <td th:text="${task.getName()}"></td>
+            <td th:text="${task.getPriority()}"></td>
+            <td th:text="${task.getState().getName()}"></td>
+            <td><a th:href="@{/tasks/{task_id}/update/todos/{todo_id}(task_id=${task.getId()},todo_id=${todo.getId()})}">Edit</a>
+                <a th:href="@{/tasks/{task_id}/delete/todos/{todo_id}(task_id=${task.getId()},todo_id=${todo.getId()})}">Delete</a></td>
+        </tr>
+        <!--Add all tasks and href for update, delete-->
+    </table>
+    <h2>Collaborators</h2>
+    <select name="selectedCollaborator">
+        <option selected disabled hidden >Select a collaborator</option>
+        <option th:each="user : ${users}"
+        th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"
+        th:value="${user.getFirstName()} + ' ' + ${user.getLastName()}">
+        </option>
+    </select>
+    <button class="standard-button">Add</button>
+    <table>
+        <tr th:each="user, i : ${collaborators}">
+            <td th:text="${i.index + 1}"></td>
+            <td th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></td>
+            <td><a>Remove</a></td>
+        </tr>
+    </table>
+    <a th:href="@{/users/{owner_id}/read(owner_id=${todo.getOwner().getId()})}">Go to ToDo Lists</a> <!--Paste owner_id-->
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Update Task</title>
+
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div th:replace="header :: header"></div>
+    <h1>Update Task</h1>
+    <form th:action="@{/tasks/update/todos/{todoId}(todoId=${todo_id})}" th:object="${taskToUpdate}" method="post" class="user-form" >
+        <div class="form-group">
+            <label for="id">Id:</label>
+            <input type="text" id="id" disabled th:value="${taskToUpdate.getId()}">
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:value="${taskToUpdate.getName()}" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="priority">Priority:</label>
+            <select id="priority" th:field="*{priority}">
+                <option th:each="priority : ${T(com.softserve.itacademy.model.Priority).values()}"
+                        th:value="${priority}"
+                        th:text="${priority}"
+                        th:selected="${priority == taskToUpdate.getPriority()}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <select id="state" th:field="*{state}">
+                <option th:each="state : ${states}"
+                        th:value="${state.getId()}"
+                        th:text="${state.getName()}"
+                        th:selected="${state.getId() == taskToUpdate.getState().getId()}">>
+                </option>
+            </select>
+        </div>
+        <div class="form-buttons-container">
+            <button class="shadowed-button" type="submit">Update</button>
+            <button class="standard-button" type="reset">Clear</button>
+        </div>
+    </form>
+    <a th:href="@{/todos/${todo_id}/tasks(todo_id=${todo_id})}">Go to Task List</a>
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

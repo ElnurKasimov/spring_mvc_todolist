@@ -46,5 +46,11 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         return users.isEmpty() ? new ArrayList<>() : users;
     }
-
+    public List<User> getCollaboratorByTodoId(int todo_id){
+        List<User> collaborators = new ArrayList<>();
+        for(long id : userRepository.getCollaboratorByTodoId(todo_id)){
+            collaborators.add(readById(id));
+        }
+        return collaborators;
+    }
 }

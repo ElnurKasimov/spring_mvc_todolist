@@ -1,0 +1,15 @@
+
+body{
+    width: 60%;
+    justify-content: center;
+}
+button{
+    justify-self: right;
+}
+table {
+    counter-reset: tableCount;
+}
+.counterCell:before {
+    content: counter(tableCount);
+    counter-increment: tableCount;
+}

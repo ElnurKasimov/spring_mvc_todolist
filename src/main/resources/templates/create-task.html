@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Task</title>
-    <link th:href="@{/form.css}" rel="stylesheet" type="text/css">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div th:replace="header :: header"></div>
     <h1>Create New Task</h1>
-    <form th:action="@{/tasks/create/todos/{todoId}(todoId=${todo_id})}" th:object="${task}" method="post">
-        <div class="row">
+    <form th:action="@{/tasks/create/todos/{todoId}(todoId=${todo_id})}" th:object="${task}" method="post" class="user-form" >
+        <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{name}" required>
         </div>
-        <div class="row">
+        <div class="form-group">
             <label for="priority">Priority:</label>
             <select id="priority" th:field="*{priority}">
                 <option th:each="priority : ${T(com.softserve.itacademy.model.Priority).values()}"
@@ -21,11 +23,12 @@
                 </option>
             </select>
         </div>
-        <div>
-            <button class="action" type="submit">Create</button>
-            <button class="clear" type="reset">Clear</button>
+        <div class="form-buttons-container">
+            <button class="shadowed-button" type="submit">Create</button>
+            <button class="standard-button" type="reset">Clear</button>
         </div>
     </form>
-    <a href="/todos/${todo_id}/tasks">Go to Task List</a>
+    <a href="@{/todos/${todo_id}/tasks(todo_id=${todo_id})}">Go to Task List</a>
+    <div th:replace="footer :: footer"></div>
 </body>
 </html>
