@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
-    <header>TODOs list</header>
+    <div th:replace="header :: header"></div>
           <h1><br>List of Users<br></h1>
            <div>
                <form action="/users/create" style=" justify-content: center;">

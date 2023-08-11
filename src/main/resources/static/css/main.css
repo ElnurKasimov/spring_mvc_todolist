@@ -8,8 +8,10 @@ header {
        font-size: 35px;
        color: #666;
 }
-/* Стили для кнопки */
-/* Стили для кнопки */
+a {
+    color: gray;
+    text-decoration: none;
+}
 .colorful-button {
     display: inline-block;
     padding: 10px 20px;
