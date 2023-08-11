@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
+    <div th:replace="header :: header"></div>
+          <h1>List of Users<br></h1>
+           <div>
+               <form action="/users/create" style=" justify-content: center;">
+                   <button type="submit" class="colorful-button">Create new user</button>
+               </form><br>
+           </div>
+    <div th:replace="footer :: footer"></div>
 
 </body>
 </html>
+
