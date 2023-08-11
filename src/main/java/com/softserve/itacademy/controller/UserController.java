@@ -24,7 +24,8 @@ public class UserController {
 //        return " ";
 //    }
 //
-//    @GetMapping("/{id}/read")
+//    @GetMapping("
+//    ")
 //    public String read(//add needed parameters) {
 //        //ToDo
 //        return " ";
