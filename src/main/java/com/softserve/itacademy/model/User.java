@@ -12,17 +12,17 @@ public class User  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message="Shouldn't be empty or blank")
+    @NotBlank(message="Shouldn't be null empty or blank")
     @Pattern(regexp = "[A-Z][a-z]+",
             message = "Must start with a capital letter followed by one or more lowercase letters")
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    @NotBlank(message="Shouldn't be empty or blank")
+    @NotBlank(message="Shouldn't be null empty or blank")
     @Pattern(regexp = "[A-Z][a-z]+",
             message = "Must start with a capital letter followed by one or more lowercase letters")
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @NotBlank(message="Shouldn't be empty or blank")
+    @NotBlank(message="Shouldn't be null empty or blank")
     @Pattern(regexp = "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}", message = "Must be a valid e-mail address")
     @Column(name = "email", nullable = false, unique = true)
     private String email;

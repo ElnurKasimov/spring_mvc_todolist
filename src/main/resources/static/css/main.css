@@ -60,6 +60,13 @@ footer {
     color: white;
 }
 
+.home {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .user-form {
     display: flex;
     flex-direction: column;
@@ -78,7 +85,7 @@ footer {
     margin-right: 10px; /* Add space between label and input */
 }
 
-.form-group input {
+.form-group input, .form-group select {
     flex: 2; /* Take up more space for the input */
     height: 30px; /* Set the height of the input fields */
     width: 100%; /* Expand the input to the full width of the form */
@@ -100,37 +107,50 @@ footer {
     width: 100%;
 }
 
-.users-list {
-    width: 100%;
-    border-collapse: collapse;
+/* Стили для таблицы */
+table {
+  border-collapse: collapse;
+  width: 500px;
+  margin-bottom: 20px;
 }
 
-.users-list th, .users-list td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+/* Стили для заголовка таблицы */
+table th {
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
 }
 
-.users-list th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+/* Стили для ячеек таблицы */
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
 
-.users-list th[colspan] {
-    text-align: center;
+/* Стили для четных строк */
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.users-list a {
-    text-decoration: none;
-    color: blue;
+/* Стили для ссылок в ячейках */
+table a {
+  text-decoration: none;
+  color: blue;
 }
 
-.users-list a:hover {
-    color: darkblue;
+/* Стили для ссылок при наведении */
+table a:hover {
+  text-decoration: underline;
 }
 
 .error {
         color: red;
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
     }
 
 

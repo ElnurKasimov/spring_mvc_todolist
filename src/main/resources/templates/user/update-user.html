@@ -6,6 +6,59 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
+<div th:replace="header :: header"></div>
+<h1>Create new user<br></h1>
 
+<form th:action="@{/users/{id}/update(id=${user.id})}" class="user-form" method="post" th:object="${user}">
+    <div class="form-group">
+        <label for="firstName">FirstName</label>
+
+<!--        <input type="text" th:field="*{firstName}" id="firstName" placeholder=th:value=${user.firstName}">-->
+        <input type="text" th:value="${firstName}" id="firstName" name="firstName" />
+    </div >
+    <ul th:if="${#fields.hasErrors('firstName')}">
+        <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}" class="error" />
+    </ul>
+
+    <div class="form-group">
+        <label for="lastName">LastName:</label>
+        <input type="text" th:field="*{lastName}" id="lastName" required>
+    </div>
+    <ul th:if="${#fields.hasErrors('lastName')}">
+        <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}" class="error" />
+    </ul>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" th:field="*{email}" id="email" required>
+    </div>
+    <ul th:if="${#fields.hasErrors('email')}">
+        <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error" />
+    </ul>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="text" th:field="*{password}" id="password" required>
+    </div>
+    <ul th:if="${#fields.hasErrors('password')}">
+        <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+    </ul>
+
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select name="roles" id="role">
+            <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.name}"></option>
+        </select>
+    </div>
+
+    <div class="form-buttons-container">
+        <button type="submit" class="standard-button">Register</button>
+        <button type="reset" class="standard-button">Clear</button>
+    </div>
+</form>
+
+
+
+<div th:replace="footer :: footer"></div>
 </body>
 </html>
