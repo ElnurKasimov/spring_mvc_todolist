@@ -7,6 +7,7 @@ import com.softserve.itacademy.service.UserService;
 import org.hibernate.JDBCException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,11 +87,17 @@ public class UserController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("user", user);
             model.addAttribute("roles", roleService.getAll());
-            return "user/create-user";
+            return "user/update-user";
         }
-        //  todo  set verification duplicated email
-        try{
-            userService.create(user);
+       try {
+            userService.update(user);
+        } catch (DataIntegrityViolationException duplicateException) {
+            duplicateException.printStackTrace();
+            String duplicateEmail = "User with this email exist already. Email must be unique";
+            model.addAttribute("duplicateEmail", duplicateEmail);
+            model.addAttribute("user", user);
+            model.addAttribute("roles", roleService.getAll());
+            return "user/update-user";
         } catch (ConstraintViolationException constraintViolationException) {
             constraintViolationException.printStackTrace();
         } catch (JDBCException jdbcException) {
@@ -98,7 +105,11 @@ public class UserController {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        return "redirect:/todos/create/users/" + user.getId();
+        model.addAttribute("user", user);
+        model.addAttribute("roles", roleService.getAll());
+        model.addAttribute("users", userService.getAll());
+        return "redirect:/home";
+//        return "redirect:/todos/create/users/" + user.getId();
     }
 
     @GetMapping("/{id}/delete")
