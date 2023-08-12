@@ -64,8 +64,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}/update")
-    public String getUpdate(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String getUpdate(@PathVariable(name="id") Long id, Model model) {
+        User user = new User();
+        try{
+            user = userService.readById(id);
+        } catch (ConstraintViolationException constraintViolationException) {
+        constraintViolationException.printStackTrace();
+    } catch (JDBCException jdbcException) {
+        jdbcException.printStackTrace();
+    } catch (Exception exception) {
+        exception.printStackTrace();
+    }
         model.addAttribute("user", user);
+        model.addAttribute("roles", roleService.getAll());
         return "user/update-user";
     }
 
