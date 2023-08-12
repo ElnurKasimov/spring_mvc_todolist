@@ -4,6 +4,7 @@ import com.softserve.itacademy.model.User;
 import com.softserve.itacademy.repository.UserRepository;
 import com.softserve.itacademy.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +47,19 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         return users.isEmpty() ? new ArrayList<>() : users;
     }
-
+    public List<User> getCollaboratorByTodoId(int todo_id){
+        List<User> collaborators = new ArrayList<>();
+        for(long id : userRepository.getCollaboratorByTodoId(todo_id)){
+            collaborators.add(readById(id));
+        }
+        return collaborators;
+    }
+    @Transactional
+    public void addCollaborator(long user_id, int todo_id){
+        userRepository.addCollaboratorByTodoId(user_id, todo_id);
+    }
+    @Transactional
+    public void deleteCollaborator(long user_id, int todo_id){
+        userRepository.deleteCollaboratorByTodoId(user_id, todo_id);
+    }
 }
