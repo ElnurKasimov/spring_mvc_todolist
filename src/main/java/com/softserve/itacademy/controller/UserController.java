@@ -6,6 +6,8 @@ import com.softserve.itacademy.service.RoleService;
 import com.softserve.itacademy.service.UserService;
 import org.hibernate.JDBCException;
 import org.hibernate.exception.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
     private  UserService userService;
     private RoleService roleService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserController (UserService userService, RoleService roleService) {
@@ -83,6 +87,7 @@ public class UserController {
 
     @PostMapping("/{id}/update")
     public String postUpdate(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+        logger.info("Model content: {}", model.asMap());
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("user", user);
@@ -108,8 +113,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAll());
         model.addAttribute("users", userService.getAll());
-        return "redirect:/home";
-//        return "redirect:/todos/create/users/" + user.getId();
+        return "home";
     }
 
     @GetMapping("/{id}/delete")
