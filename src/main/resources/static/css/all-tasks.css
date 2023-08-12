@@ -1,15 +1,24 @@
 
 body{
-    width: 60%;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-button{
-    justify-self: right;
+button, table{
+    margin: 10px;
 }
 table {
-    counter-reset: tableCount;
+    width: 100%;
 }
 .counterCell:before {
     content: counter(tableCount);
     counter-increment: tableCount;
+}
+select{
+    width: 100%;
+    background: white;
+    border: 1px solid grey;
+    height: 30px;
+    border-radius: 10px;
 }

@@ -8,10 +8,19 @@ header {
     font-size: 35px;
     color: #666;
 }
+
 a {
     color: gray;
     text-decoration: none;
 }
+
+footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: left;
+    color: #666;
+}
+
 .shadowed-button {
     display: flex;
     align-items: center; /* Выравнивание по вертикали */
@@ -69,7 +78,7 @@ a {
     margin-right: 10px; /* Add space between label and input */
 }
 
-.form-group input,.form-group select {
+.form-group input {
     flex: 2; /* Take up more space for the input */
     height: 30px; /* Set the height of the input fields */
     width: 100%; /* Expand the input to the full width of the form */
@@ -91,28 +100,38 @@ a {
     width: 100%;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
+.users-list {
+    width: 100%;
+    border-collapse: collapse;
 }
-article {
-    float: left;
-    padding: 20px;
-    width: 85%;
-    background-color: #f1f1f1;
-    height: auto;
-}
-section:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-footer {
-    background-color: #f1f1f1;
-    padding: 10px;
+
+.users-list th, .users-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-    color: #666;
 }
+
+.users-list th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.users-list th[colspan] {
+    text-align: center;
+}
+
+.users-list a {
+    text-decoration: none;
+    color: blue;
+}
+
+.users-list a:hover {
+    color: darkblue;
+}
+
+
+
+
 @media ( max-width : 600px) {
     nav, article {
         width: 100%;
