@@ -9,7 +9,6 @@
 <div th:replace="header :: header"></div>
 <h1>Update the user<br></h1>
 
-
 <form th:action="@{/users/{id}/update(id=${user.id})}" class="user-form" method="post" th:object="${user}">
     <div class="form-group">
         <label for="firstName">FirstName</label>
@@ -44,8 +43,6 @@
         <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
     </ul>
 
-<!--    <p><span th:text="${user.role.name}"></span></p>-->
-
     <div class="form-group">
         <label for="role">Role:</label>
         <select name="roles" id="role">
@@ -58,7 +55,7 @@
 
     <div class="form-buttons-container">
         <button type="submit" class="standard-button">Update</button>
-        <button type="reset" class="standard-button">Clear</button>
+        <button type="reset" class="standard-button" >Clear</button>
     </div>
 </form>
 
