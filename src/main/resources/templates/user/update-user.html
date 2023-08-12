@@ -13,8 +13,6 @@
 <form th:action="@{/users/{id}/update(id=${user.id})}" class="user-form" method="post" th:object="${user}">
     <div class="form-group">
         <label for="firstName">FirstName</label>
-
-<!--        <input type="text" th:field="*{firstName}" id="firstName" placeholder=th:value=${user.firstName}">-->
         <input type="text" th:value="${user.firstName}" id="firstName" name="firstName" />
     </div >
     <ul th:if="${#fields.hasErrors('firstName')}">
@@ -33,6 +31,7 @@
         <label for="email">Email:</label>
         <input type="text" th:field="*{email}" id="email" required>
     </div>
+    <p th:if="${duplicateEmail}" class="error" th:text="${duplicateEmail}"></p>
     <ul th:if="${#fields.hasErrors('email')}">
         <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error" />
     </ul>
@@ -45,17 +44,15 @@
         <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
     </ul>
 
+<!--    <p><span th:text="${user.role.name}"></span></p>-->
+
     <div class="form-group">
         <label for="role">Role:</label>
         <select name="roles" id="role">
-<!--            <option th:each="role : ${roles}" -->
-<!--                    th:value="${role.name}"-->
-<!--                    th:text="${role.name}"></option>-->
-
             <option th:each="role : ${roles}"
                     th:value="${role.name}"
-                    th:text="${role.name}"
-                    th:selected="${user.role.name == role.name}"></option>
+                    th:text="${role.name}"></option>
+<!--                    th:selected="${user.role.name == role.name}"></option>-->
         </select>
     </div>
 
