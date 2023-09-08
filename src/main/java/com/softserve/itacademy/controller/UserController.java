@@ -4,35 +4,25 @@ package com.softserve.itacademy.controller;
 import com.softserve.itacademy.model.User;
 import com.softserve.itacademy.service.RoleService;
 import com.softserve.itacademy.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.JDBCException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-
 import javax.validation.Valid;
-
-
 
 @Controller
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
-    private  UserService userService;
-    private RoleService roleService;
+    private  final UserService userService;
+    private final RoleService roleService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    public UserController (UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
-    }
-
 
     @GetMapping("/create")
     public String getCreateUser(Model model) {
